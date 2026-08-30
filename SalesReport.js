@@ -96,7 +96,7 @@ export const SalesReport = ({ transactions, products }) => {
         });
         return Object.values(map)
             .sort((a, b) => b.quantity - a.quantity)
-            .slice(0, 25);
+            .slice(0, 30);
     }, [filteredTransactions]);
     // Payment Method Breakdown
     const paymentMethodShare = useMemo(() => {
