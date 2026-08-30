@@ -1,0 +1,51 @@
+
+
+body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  }
+
+.font-mono-receipt {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Print styling for receipts */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printable-receipt, #printable-receipt * {
+    visibility: visible;
+  }
+  #printable-receipt {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 58mm;
+    margin: 0;
+    padding: 10px;
+    background: white;
+    color: black;
+  }
+  #printable-receipt.receipt-80mm {
+    width: 80mm;
+  }
+  #printable-receipt.receipt-58mm {
+    width: 58mm;
+  }
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.5);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.8);
+}
