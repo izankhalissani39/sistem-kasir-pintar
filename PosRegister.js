@@ -2,7 +2,7 @@ import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-run
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { Search, Barcode, Plus, Minus, Trash2, ShoppingBag, Percent, CreditCard, User, RotateCcw, BookmarkCheck, FolderPlus, AlertCircle, CheckCircle2, Tag, ArrowLeft, ChevronRight, Camera, ShoppingCart } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { formatRupiah, playBeepSound } from '../utils/formatters.js';
+import { formatRupiah, playBeepSound } from './formatters.js';
 export const PosRegister = ({ products, categories = [], cart, setCart, storeSettings, onOpenPayment, heldOrders, onHoldOrder, onRestoreHeldOrder, onDeleteHeldOrder, onOpenCameraScanner, }) => {
     const categoryOptions = ['Semua', ...categories.filter(Boolean)];
     const [selectedCategory, setSelectedCategory] = useState('Semua');
