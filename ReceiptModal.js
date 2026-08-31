@@ -2,7 +2,7 @@ import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import React, { useState, useEffect } from 'react';
 import { Printer, Share2, Copy, Check, PlusCircle, X, Send, CheckCircle2 } from 'lucide-react';
 import { motion } from 'motion/react';
-import { formatRupiah, formatFullDateTimeIndo } from '../utils/formatters.js';
+import { formatRupiah, formatFullDateTimeIndo } from './formatters.js';
 export const ReceiptModal = ({ isOpen, onClose, transaction, storeSettings, onNewTransaction, }) => {
     const [copied, setCopied] = useState(false);
     const [showWaInput, setShowWaInput] = useState(false);
