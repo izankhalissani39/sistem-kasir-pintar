@@ -26,7 +26,7 @@ export const INITIAL_PRODUCTS = [
         stock: 50,
         minStockAlert: 10,
         unit: 'cup',
-        image: new URL('./prd-mmn-01.svg', import.meta.url).href,
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-01.svg'
         colorTag: '#f59e0b',
     },
     {
@@ -40,7 +40,7 @@ export const INITIAL_PRODUCTS = [
         stock: 40,
         minStockAlert: 10,
         unit: 'cup',
-        image: new URL('./products/prd-mnm-02.svg', import.meta.url).href,
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-01.svg'
         colorTag: '#10b981',
     },
     {
@@ -54,7 +54,7 @@ export const INITIAL_PRODUCTS = [
         stock: 35,
         minStockAlert: 5,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-03.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-03.svg',
         colorTag: '#ec4899',
     },
     {
@@ -68,7 +68,7 @@ export const INITIAL_PRODUCTS = [
         stock: 60,
         minStockAlert: 10,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-04.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-04.svg',
         colorTag: '#f97316',
     },
     {
@@ -82,7 +82,7 @@ export const INITIAL_PRODUCTS = [
         stock: 30,
         minStockAlert: 5,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-05.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-05.svg',
         colorTag: '#ef4444',
     },
     {
@@ -96,7 +96,7 @@ export const INITIAL_PRODUCTS = [
         stock: 45,
         minStockAlert: 8,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-06.svg',
+        image:'/sistem-kasir-pintar/assets/products/prd-mnm-06.svg',
         colorTag: '#f43f5e',
     },
     {
@@ -110,7 +110,7 @@ export const INITIAL_PRODUCTS = [
         stock: 30,
         minStockAlert: 5,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-07.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-07.svg',
         colorTag: '#eab308',
     },
     {
@@ -124,7 +124,7 @@ export const INITIAL_PRODUCTS = [
         stock: 40,
         minStockAlert: 5,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-08.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-08.svg',
         colorTag: '#dc2626',
     },
     {
@@ -138,7 +138,7 @@ export const INITIAL_PRODUCTS = [
         stock: 25,
         minStockAlert: 5,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-09.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-09.svg',
         colorTag: '#a3e635',
     },
     {
@@ -152,7 +152,7 @@ export const INITIAL_PRODUCTS = [
         stock: 35,
         minStockAlert: 5,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-10.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-10.svg',
         colorTag: '#84cc16',
     },
     {
@@ -166,7 +166,7 @@ export const INITIAL_PRODUCTS = [
         stock: 30,
         minStockAlert: 5,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-11.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-11.svg',
         colorTag: '#cbd5e1',
     },
 
@@ -182,7 +182,7 @@ export const INITIAL_PRODUCTS = [
         stock: 100,
         minStockAlert: 15,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-12.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-12.svg',
         colorTag: '#78350f',
     },
     {
@@ -196,7 +196,7 @@ export const INITIAL_PRODUCTS = [
         stock: 100,
         minStockAlert: 15,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-13.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-13.svg',
         colorTag: '#78350f',
     },
     {
@@ -210,7 +210,7 @@ export const INITIAL_PRODUCTS = [
         stock: 120,
         minStockAlert: 20,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-14.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-14.svg',
         colorTag: '#b45309',
     },
     {
@@ -224,7 +224,7 @@ export const INITIAL_PRODUCTS = [
         stock: 150,
         minStockAlert: 20,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-15.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-15.svg',
         colorTag: '#1e293b',
     },
     {
@@ -238,7 +238,7 @@ export const INITIAL_PRODUCTS = [
         stock: 130,
         minStockAlert: 20,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-16.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-16.svg',
         colorTag: '#451a03',
     },
     {
@@ -252,7 +252,7 @@ export const INITIAL_PRODUCTS = [
         stock: 80,
         minStockAlert: 15,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-17.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-17.svg',
         colorTag: '#d97706',
     },
     {
@@ -266,7 +266,7 @@ export const INITIAL_PRODUCTS = [
         stock: 140,
         minStockAlert: 25,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-18.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-18.svg',
         colorTag: '#15803d',
     },
     {
@@ -280,7 +280,7 @@ export const INITIAL_PRODUCTS = [
         stock: 90,
         minStockAlert: 15,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-19.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-19.svg',
         colorTag: '#7c2d12',
     },
     {
@@ -294,7 +294,7 @@ export const INITIAL_PRODUCTS = [
         stock: 200,
         minStockAlert: 30,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-20.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-20.svg',
         colorTag: '#b91c1c',
     },
     {
@@ -308,7 +308,7 @@ export const INITIAL_PRODUCTS = [
         stock: 150,
         minStockAlert: 20,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-21.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-21.svg',
         colorTag: '#16a34a',
     },
 
@@ -324,7 +324,7 @@ export const INITIAL_PRODUCTS = [
         stock: 85,
         minStockAlert: 10,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-22.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-22.svg',
         colorTag: '#eab308',
     },
     {
@@ -338,7 +338,7 @@ export const INITIAL_PRODUCTS = [
         stock: 80,
         minStockAlert: 10,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-23.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-23.svg',
         colorTag: '#3b82f6',
     },
     {
@@ -352,7 +352,7 @@ export const INITIAL_PRODUCTS = [
         stock: 95,
         minStockAlert: 15,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-24.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-24.svg',
         colorTag: '#991b1b',
     },
     {
@@ -366,7 +366,7 @@ export const INITIAL_PRODUCTS = [
         stock: 110,
         minStockAlert: 15,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-25.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-25.svg',
         colorTag: '#7c2d12',
     },
     {
@@ -380,7 +380,7 @@ export const INITIAL_PRODUCTS = [
         stock: 60,
         minStockAlert: 10,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-26.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-26.svg',
         colorTag: '#78350f',
     },
     {
@@ -394,7 +394,7 @@ export const INITIAL_PRODUCTS = [
         stock: 75,
         minStockAlert: 10,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-27.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-27.svg',
         colorTag: '#22c55e',
     },
     {
@@ -408,7 +408,7 @@ export const INITIAL_PRODUCTS = [
         stock: 90,
         minStockAlert: 15,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-28.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-28.svg',
         colorTag: '#451a03',
     },
     {
@@ -422,7 +422,7 @@ export const INITIAL_PRODUCTS = [
         stock: 70,
         minStockAlert: 10,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-29.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-29.svg',
         colorTag: '#e2e8f0',
     },
     {
@@ -436,7 +436,7 @@ export const INITIAL_PRODUCTS = [
         stock: 100,
         minStockAlert: 15,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-30.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-30.svg',
         colorTag: '#a3e635',
     },
     {
@@ -450,7 +450,7 @@ export const INITIAL_PRODUCTS = [
         stock: 120,
         minStockAlert: 15,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-31.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-31.svg',
         colorTag: '#f97316',
     },
     {
@@ -464,7 +464,7 @@ export const INITIAL_PRODUCTS = [
         stock: 100,
         minStockAlert: 15,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-32.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-32.svg',
         colorTag: '#f59e0b',
     },
     {
@@ -478,7 +478,7 @@ export const INITIAL_PRODUCTS = [
         stock: 110,
         minStockAlert: 15,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-33.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-33.svg',
         colorTag: '#fb923c',
     },
     {
@@ -492,7 +492,7 @@ export const INITIAL_PRODUCTS = [
         stock: 90,
         minStockAlert: 15,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-34.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-34.svg',
         colorTag: '#fbbf24',
     },
     {
@@ -506,7 +506,7 @@ export const INITIAL_PRODUCTS = [
         stock: 80,
         minStockAlert: 10,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-35.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-35.svg',
         colorTag: '#f43f5e',
     },
     {
@@ -520,7 +520,7 @@ export const INITIAL_PRODUCTS = [
         stock: 70,
         minStockAlert: 10,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-36.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-36.svg',
         colorTag: '#eab308',
     },
     {
@@ -534,7 +534,7 @@ export const INITIAL_PRODUCTS = [
         stock: 85,
         minStockAlert: 10,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-37.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-37.svg',
         colorTag: '#fed7aa',
     },
     {
@@ -548,7 +548,7 @@ export const INITIAL_PRODUCTS = [
         stock: 80,
         minStockAlert: 10,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-38.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-38.svg',
         colorTag: '#7c3aed',
     },
 
@@ -564,7 +564,7 @@ export const INITIAL_PRODUCTS = [
         stock: 100,
         minStockAlert: 20,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-39.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-39.svg',
         colorTag: '#fde047',
     },
     {
@@ -578,7 +578,7 @@ export const INITIAL_PRODUCTS = [
         stock: 100,
         minStockAlert: 20,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-40.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-40.svg',
         colorTag: '#fbbf24',
     },
     {
@@ -592,7 +592,7 @@ export const INITIAL_PRODUCTS = [
         stock: 90,
         minStockAlert: 15,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-41.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-41.svg',
         colorTag: '#4ade80',
     },
     {
@@ -606,7 +606,7 @@ export const INITIAL_PRODUCTS = [
         stock: 95,
         minStockAlert: 15,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-42.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-42.svg',
         colorTag: '#22c55e',
     },
     {
@@ -620,7 +620,7 @@ export const INITIAL_PRODUCTS = [
         stock: 120,
         minStockAlert: 20,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-43.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-43.svg',
         colorTag: '#f43f5e',
     },
     {
@@ -634,7 +634,7 @@ export const INITIAL_PRODUCTS = [
         stock: 80,
         minStockAlert: 15,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-44.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-44.svg',
         colorTag: '#2563eb',
     },
     {
@@ -648,7 +648,7 @@ export const INITIAL_PRODUCTS = [
         stock: 110,
         minStockAlert: 20,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-45.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-45.svg',
         colorTag: '#a78bfa',
     },
     {
@@ -676,7 +676,7 @@ export const INITIAL_PRODUCTS = [
         stock: 100,
         minStockAlert: 20,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-47.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-47.svg',
         colorTag: '#60a5fa',
     },
     {
@@ -690,7 +690,7 @@ export const INITIAL_PRODUCTS = [
         stock: 85,
         minStockAlert: 15,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-48.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-48.svg',
         colorTag: '#cbd5e1',
     },
     {
@@ -720,7 +720,7 @@ export const INITIAL_PRODUCTS = [
         stock: 40,
         minStockAlert: 8,
         unit: 'porsi',
-        image: '/assets/products/prd-mnm-50.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-50.svg',
         colorTag: '#ec4899',
     },
     {
@@ -734,7 +734,7 @@ export const INITIAL_PRODUCTS = [
         stock: 35,
         minStockAlert: 8,
         unit: 'porsi',
-        image: '/assets/products/prd-mnm-51.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-51.svg',
         colorTag: '#10b981',
     },
     {
@@ -748,94 +748,10 @@ export const INITIAL_PRODUCTS = [
         stock: 45,
         minStockAlert: 10,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-52.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-52.svg',
         colorTag: '#047857',
     }
 ];
 
-export const INITIAL_TRANSACTIONS = [
-    {
-        id: 'trx-demo-01',
-        invoiceNumber: 'TRX-20260814-0001',
-        date: '2026-08-14T02:15:00.000Z',
-        items: [
-            {
-                productId: 'prd-mnm-50',
-                productName: 'Sup Buah',
-                sku: 'DST-001',
-                unit: 'porsi',
-                unitPrice: 0,
-                costPrice: 0,
-                quantity: 0,
-                discount: 0,
-                subtotal: 0,
-            },
-            {
-                productId: 'prd-mnm-01',
-                productName: 'Jus Mangga',
-                sku: 'JUS-001',
-                unit: 'cup',
-                unitPrice: 0,
-                costPrice: 0,
-                quantity: 1,
-                discount: 0,
-                subtotal: 0,
-            }
-        ],
-        subtotal: 0,
-        taxPercent: 0,
-        taxAmount: 0,
-        discountAmount: 0,
-        totalAmount: 0,
-        totalCost: 0,
-        paymentMethod: 'cash',
-        amountPaid:0,
-        change: 0,
-        cashierName: 'Izan (Kasir 1)',
-        customerName: 'pelanggan umum',
-        status: 'completed',
-    },
-    {
-        id: 'trx-demo-02',
-        invoiceNumber: 'TRX-20260814-0002',
-        date: '2026-08-14T03:30:00.000Z',
-        items: [
-            {
-                productId: 'prd-mnm-14',
-                productName: 'Good Day Cappucino',
-                sku: 'COP-003',
-                unit: 'cup',
-                unitPrice: 0,
-                costPrice: 0,
-                quantity: 0,
-                discount: 0,
-                subtotal: 0,
-            },
-            {
-                productId: 'prd-mnm-49',
-                productName: 'Pop Ice Coklat',
-                sku: 'POP-011',
-                unit: 'cup',
-                unitPrice: 0,
-                costPrice: 0,
-                quantity: 0,
-                discount: 0,
-                subtotal: 0,
-            }
-        ],
-        subtotal: 0,
-        taxPercent: 0,
-        taxAmount: 0,
-        discountAmount: 0,
-        totalAmount: 0,
-        totalCost: 0,
-        paymentMethod: 'cash',
-        amountPaid: 0,
-        change: 0,
-        cashierName: 'Izan (Kasir 1)',
-        customerName: 'pelanggan umum',
-        status: 'completed',
-    }
-];
-
+export const INITIAL_TRANSACTIONS = []
 export const INITIAL_CATEGORIES = [...new Set(INITIAL_PRODUCTS.map((product) => product.category).filter(Boolean))];
