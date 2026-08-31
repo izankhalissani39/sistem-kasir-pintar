@@ -3,7 +3,7 @@ import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { X, Banknote, QrCode, CreditCard, Building2, CheckCircle2, AlertCircle, Smartphone } from 'lucide-react';
 import { motion } from 'motion/react';
 import confetti from 'canvas-confetti';
-import { formatRupiah, playBeepSound, generateInvoiceNumber } from '../utils/formatters.js';
+import { formatRupiah, playBeepSound, generateInvoiceNumber } from './formatters.js';
 export const PaymentModal = ({ isOpen, onClose, cart, cartSummary, storeSettings, onPaymentSuccess, transactionCount, cashierName, }) => {
     const [paymentMethod, setPaymentMethod] = useState('cash');
     const [amountPaidInput, setAmountPaidInput] = useState('');
