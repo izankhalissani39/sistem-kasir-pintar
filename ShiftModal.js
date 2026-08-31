@@ -2,7 +2,7 @@ import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import React, { useState, useMemo } from 'react';
 import { Coins, X, Lock, Unlock } from 'lucide-react';
 import { motion } from 'motion/react';
-import { formatRupiah, formatFullDateTimeIndo } from '../utils/formatters.js';
+import { formatRupiah, formatFullDateTimeIndo } from './formatters.js';
 export const ShiftModal = ({ isOpen, onClose, currentShift, onStartShift, onCloseShift, transactions, storeSettings, }) => {
     const [startingCashInput, setStartingCashInput] = useState('200000');
     const [cashierNameInput, setCashierNameInput] = useState(storeSettings.defaultCashierName);
