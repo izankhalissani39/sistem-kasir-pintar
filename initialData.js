@@ -26,7 +26,7 @@ export const INITIAL_PRODUCTS = [
         stock: 50,
         minStockAlert: 10,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-01.svg',
+        image: new URL('./prd-mmn-01.svg', import.meta.url).href,
         colorTag: '#f59e0b',
     },
     {
@@ -40,7 +40,7 @@ export const INITIAL_PRODUCTS = [
         stock: 40,
         minStockAlert: 10,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-02.svg',
+        image: new URL('./products/prd-mnm-02.svg', import.meta.url).href,
         colorTag: '#10b981',
     },
     {
