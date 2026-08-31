@@ -1,7 +1,7 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import React, { useState, useMemo } from 'react';
 import { TrendingUp, DollarSign, ShoppingBag, CreditCard, Download, PieChart, BarChart3, Package, ArrowUpRight } from 'lucide-react';
-import { formatRupiah, formatNumber } from '../utils/formatters.js';
+import { formatRupiah, formatNumber } from './formatters.js';
 export const SalesReport = ({ transactions, products }) => {
     const [timeFilter, setTimeFilter] = useState('all');
     // Filter transactions by selected timeframe
