@@ -1,7 +1,7 @@
 import { jsx as _jsx, jsxs as _jsxs } from 'react/jsx-runtime';
 import React, { useState } from 'react';
 import { LogIn, ShieldCheck, Database } from 'lucide-react';
-import { supabase } from '../lib/supabaseClient.js';
+import { supabase } from './supabaseClient.js';
 
 export const AuthGate = ({ onLocalMode }) => {
   const [email, setEmail] = useState('');
