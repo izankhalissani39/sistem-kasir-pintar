@@ -2,7 +2,7 @@ import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import React, { useState, useMemo } from 'react';
 import { Plus, Search, Edit3, Trash2, Package, AlertTriangle, DollarSign, X, RefreshCw, Tag } from 'lucide-react';
 import { motion } from 'motion/react';
-import { formatRupiah, generateRandomBarcode } from '../utils/formatters.js';
+import { formatRupiah, generateRandomBarcode } from './formatters.js';
 export const InventoryManager = ({ products, categories = [], onCategoriesChange, onAddProduct, onUpdateProduct, onDeleteProduct, onQuickAdjustStock, }) => {
     const [searchQuery, setSearchQuery] = useState('');
     const categoryOptions = ['Semua', ...categories.filter(Boolean)];
