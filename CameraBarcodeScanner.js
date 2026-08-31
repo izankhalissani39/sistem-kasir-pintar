@@ -2,7 +2,7 @@ import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-run
 import React, { useState, useEffect, useRef } from 'react';
 import { Camera, X, Flashlight, RotateCw, CheckCircle2, AlertCircle, Barcode } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { playBeepSound } from '../utils/formatters.js';
+import { playBeepSound } from './formatters.js';
 export const CameraBarcodeScanner = ({ isOpen, onClose, products, onScanSuccess, }) => {
     const videoRef = useRef(null);
     const resumeTimerRef = useRef(null);
