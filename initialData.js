@@ -662,7 +662,7 @@ export const INITIAL_PRODUCTS = [
         stock: 130,
         minStockAlert: 25,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-46.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-46.svg',
         colorTag: '#f472b6',
     },
     {
@@ -704,7 +704,7 @@ export const INITIAL_PRODUCTS = [
         stock: 150,
         minStockAlert: 30,
         unit: 'cup',
-        image: '/assets/products/prd-mnm-49.svg',
+        image: '/sistem-kasir-pintar/assets/products/prd-mnm-49.svg',
         colorTag: '#7c2d12',
     },
 
