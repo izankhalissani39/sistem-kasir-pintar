@@ -1,4 +1,4 @@
--- TOKO BERKAH JAYA POS - Supabase/PostgreSQL schema
+-- TOKO MELIORA - Supabase/PostgreSQL schema
 -- Run this once in Supabase SQL Editor.
 
 create extension if not exists pgcrypto;
