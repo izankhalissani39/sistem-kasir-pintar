@@ -34,7 +34,7 @@ export const PosRegister = ({ products, categories = [], cart, setCart, storeSet
             setCustomerName('Pelanggan Umum');
             setGlobalDiscountPercent(0);
             setShowDiscountInput(false);
-            setMobilePosTab('cart');
+            setMobilePosTab('catalog');
         }
     }, [cart.length]);
     // Filter products by category and search
