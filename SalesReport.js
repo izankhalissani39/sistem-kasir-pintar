@@ -40,8 +40,20 @@ export const SalesReport = ({ transactions, products }) => {
     // High-level Financial Summary
     const metrics = useMemo(() => {
         const totalSales = filteredTransactions.reduce((sum, t) => sum + t.totalAmount, 0);
-        const totalCost = filteredTransactions.reduce((sum, t) => sum + (t.totalCost || 0), 0);
+        const totalCost = filteredTransactions.reduce(
+            (sum, transaction) =>
+                sum +
+                (transaction.items || []).reduce(
+                    (itemSum, item) =>
+                        itemSum +
+                        Number(item.costPrice || 0) * Number(item.quantity || 0),
+                    0
+                ),
+            0
+        );
+        
         const totalTax = filteredTransactions.reduce((sum, t) => sum + (t.taxAmount || 0), 0);
+        
         const netSalesBeforeTax = totalSales - totalTax;
         const grossProfit = netSalesBeforeTax - totalCost;
         const profitMargin = netSalesBeforeTax > 0 ? Math.round((grossProfit / netSalesBeforeTax) * 100) : 0;
