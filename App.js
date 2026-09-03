@@ -337,11 +337,22 @@ export default function App() {
                 return false;
             }
         }
-        // 1. Deduct quantities from product inventory (never mask an oversell by clamping to zero)
-        setProducts((prevProducts) => prevProducts.map((prod) => {
-            const itemSold = newTransaction.items.find((i) => i.productId === prod.id);
-            return itemSold ? { ...prod, stock: prod.stock - itemSold.quantity } : prod;
-        }));
+      // 1. Update local inventory only in local/offline mode.
+      // In Supabase mode, commitSale() already updates stock on the server.
+      if (!(SUPABASE_CONFIGURED && !forceLocalMode && dbHydrated && dbStoreId)) {
+          setProducts((prevProducts) =>
+              prevProducts.map((prod) => {
+                  const itemSold = newTransaction.items.find(
+                     (i) => i.productId === prod.id
+                  );
+
+                   return itemSold
+                       ? { ...prod, stock: prod.stock - itemSold.quantity }
+                       : prod;
+              })
+           );
+        }
+        
         // 2. Add to transaction log
         setTransactions((prev) => [newTransaction, ...prev]);
         // 3. Update current shift record
