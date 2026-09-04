@@ -14,11 +14,21 @@ const fromProductRow = (p) => ({
 });
 
 const fromTransactionRow = (t) => ({
-  id: t.id, date: t.transaction_date, customerName: t.customer_name || 'Pelanggan Umum',
-  paymentMethod: t.payment_method, subtotal: Number(t.subtotal || 0), discountAmount: Number(t.discount_amount || 0),
-  taxAmount: Number(t.tax_amount || 0), totalAmount: Number(t.total_amount || 0), paidAmount: Number(t.paid_amount || 0),
-  changeAmount: Number(t.change_amount || 0), amountPaid: Number(t.paid_amount || 0), paidAmount: Number(t.paid_amount || 0), change: Number(t.change_amount || 0), status: t.status, refundReason: t.refund_reason || undefined,
-  cashierName: t.cashier_name || '', items: t.items || [],
+  id: t.id,
+  invoiceNumber: t.invoice_number || t.id,
+  date: t.transaction_date,
+  customername: t.customer_name || 'Pelanggan Umum',
+  paymentmethod: t.payment_method || 'chas',
+  subtital: Number(t.subtotal || 0),
+  discountAmount: Number(t.discount_Amount || 0),
+  taxAmount: Number(t.tax_amount || 0),
+  totalAmount: Number(t.total_amount || 0),
+  paidAmount: Number(t.paid_amount || 0),
+  changeAmount: Number(t.change_amount || 0),
+  status: t.status || 'completed',
+  refoundReason: t.refound_reason || null,
+  cashiername: t.cashier_name || '',
+  items: t.items || [],
 });
 
 export async function ensureStore(storeName = 'TOKO BERKAH JAYA') {
