@@ -135,35 +135,150 @@ export const SalesReport = ({ transactions, products }) => {
         ].filter((m) => m.count > 0 || m.total > 0);
     }, [filteredTransactions]);
     // Export to CSV
-    const handleExportCSV = () => {
-        if (filteredTransactions.length === 0) {
-            alert('Tidak ada data untuk diekspor!');
-            return;
+const handleExportCSV = () => {
+    if (filteredTransactions.length === 0) {
+        alert('Tidak ada data untuk diekspor!');
+        return;
+    }
+
+    const csvCell = (value) =>
+        `"${String(value ?? '').replace(/"/g, '""')}"`;
+
+    const calculateSubtotal = (transaction) => {
+        if (transaction.subtotal != null) {
+            return Number(transaction.subtotal) || 0;
         }
-        const headers = ['No Invoice', 'Tanggal', 'Bulan', 'Kasir', 'Pelanggan', 'Metode Pembayaran', 'Subtotal', 'Diskon', 'PPN', 'Total Tagihan', 'Total Modal', 'Status'];
-        const rows = filteredTransactions.map((t) => [
-            t.invoiceNumber,
-            `"${t.date}"`,
-            `"${formatMonthName(t.date)}"`,
-            `"${t.cashierName}"`,
-            `"${t.customerName || 'Umum'}"`,
-            t.paymentMethod,
-            t.subtotal,
-            t.discountAmount,
-            t.taxAmount,
-            t.totalAmount,
-            t.totalCost || 0,
-            t.status,
-        ]);
-        const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map((e) => e.join(','))].join('\n');
-        const encodedUri = encodeURI(csvContent);
-        const link = document.createElement('a');
-        link.setAttribute('href', encodedUri);
-        link.setAttribute('download', `Laporan_Penjualan_${timeFilter}_${Date.now()}.csv`);
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+
+        return (transaction.items || []).reduce(
+            (sum, item) =>
+                sum +
+                Number(
+                    item.subtotal ??
+                    (Number(item.unitPrice || 0) * Number(item.quantity || 0))
+                ),
+            0
+        );
     };
+
+    const calculateTotalCost = (transaction) => {
+        return (transaction.items || []).reduce(
+            (sum, item) =>
+                sum +
+                Number(item.costPrice || 0) * Number(item.quantity || 0),
+            0
+        );
+    };
+
+    const totalSales = filteredTransactions.reduce(
+        (sum, transaction) => sum + Number(transaction.totalAmount || 0),
+        0
+    );
+
+    const totalCost = filteredTransactions.reduce(
+        (sum, transaction) => sum + calculateTotalCost(transaction),
+        0
+    );
+
+    const totalTax = filteredTransactions.reduce(
+        (sum, transaction) => sum + Number(transaction.taxAmount || 0),
+        0
+    );
+
+    const grossProfit = totalSales - totalTax - totalCost;
+
+    const totalItemsSold = filteredTransactions.reduce(
+        (sum, transaction) =>
+            sum +
+            (transaction.items || []).reduce(
+                (itemSum, item) =>
+                    itemSum + Number(item.quantity || 0),
+                0
+            ),
+        0
+    );
+
+    const headers = [
+        'No Invoice',
+        'Tanggal',
+        'Bulan',
+        'Kasir',
+        'Pelanggan',
+        'Metode Pembayaran',
+        'Subtotal',
+        'Diskon',
+        'PPN',
+        'Total Penjualan',
+        'Total Modal',
+        'Laba',
+        'Status',
+    ];
+
+    const rows = filteredTransactions.map((t) => {
+        const subtotal = calculateSubtotal(t);
+        const discount = Number(t.discountAmount || 0);
+        const tax = Number(t.taxAmount || 0);
+        const total = Number(t.totalAmount || 0);
+        const cost = calculateTotalCost(t);
+        const profit = total - tax - cost;
+
+        return [
+            csvCell(t.invoiceNumber || t.id),
+            csvCell(t.date),
+            csvCell(formatMonthName(t.date)),
+            csvCell(t.cashierName || ''),
+            csvCell(t.customerName || 'Umum'),
+            csvCell(t.paymentMethod || 'cash'),
+            subtotal,
+            discount,
+            tax,
+            total,
+            cost,
+            profit,
+            csvCell(t.status || 'completed'),
+        ];
+    });
+
+    const summaryRows = [
+        [],
+        ['REKAP PENJUALAN'],
+        ['Total Penjualan', totalSales],
+        ['Total Modal', totalCost],
+        ['Laba Kotor', grossProfit],
+        ['Jumlah Transaksi', filteredTransactions.length],
+        ['Barang Terjual', totalItemsSold],
+    ];
+
+    const csvRows = [
+        headers,
+        ...rows,
+        ...summaryRows,
+    ];
+
+    const csvContent =
+        'data:text/csv;charset=utf-8,' +
+        csvRows
+            .map((row) =>
+                row
+                    .map((cell) =>
+                        typeof cell === 'number' ? cell : csvCell(cell)
+                    )
+                    .join(',')
+            )
+            .join('\n');
+
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement('a');
+
+    link.setAttribute('href', encodedUri);
+    link.setAttribute(
+        'download',
+        `Laporan_Penjualan_${timeFilter}_${Date.now()}.csv`
+    );
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+};
     return (_jsxs("div", { className: "max-w-7xl mx-auto p-4 sm:p-6 space-y-6", children: [_jsxs("div", { className: "bg-white p-4 rounded-2xl border border-slate-200 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-3", children: [_jsxs("div", { className: "flex items-center space-x-2", children: [_jsx(BarChart3, { className: "w-5 h-5 text-emerald-600" }), _jsxs("div", { children: [_jsx("h2", { className: "font-bold text-base text-slate-800", children: "Laporan & Analitik Penjualan" }), _jsxs("p", { className: "text-[11px] text-slate-500 mt-0.5", children: ["Periode: ", _jsx("span", { className: "font-semibold text-emerald-700", children: periodLabel })] })] })] }), _jsxs("div", { className: "flex items-center space-x-2 w-full sm:w-auto", children: [_jsx("div", { className: "flex bg-slate-100 p-1 rounded-xl border border-slate-200 w-full sm:w-auto", children: [
                                     { id: 'today', label: 'Hari Ini' },
                                     { id: '7days', label: '7 Hari' },
