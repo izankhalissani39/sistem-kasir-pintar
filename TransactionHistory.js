@@ -14,14 +14,22 @@ export const TransactionHistory = ({ transactions, onReprintReceipt, onRefundTra
     const [refundReason, setRefundReason] = useState('Permintaan Pelanggan / Barang Rusak');
     const filteredTransactions = useMemo(() => {
         return transactions.filter((tx) => {
-            const matchSearch = tx.invoiceNumber.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                (tx.customerName && tx.customerName.toLowerCase().includes(searchQuery.toLowerCase())) ||
-                tx.cashierName.toLowerCase().includes(searchQuery.toLowerCase());
-            const matchMethod = methodFilter === 'all' || tx.paymentMethod === methodFilter;
-            const matchStatus = statusFilter === 'all' || tx.status === statusFilter;
-            return matchSearch && matchMethod && matchStatus;
-        });
-    }, [transactions, searchQuery, methodFilter, statusFilter]);
+    const search = searchQuery.toLowerCase();
+
+    const matchSearch =
+      String(tx.invoiceNumber || tx.id || '').toLowerCase().includes(search) ||
+      String(tx.customerName || 'Umum').toLowerCase().includes(search) ||
+      String(tx.cashierName || '').toLowerCase().includes(search);
+
+    const matchMethod =
+      methodFilter === 'all' || tx.paymentMethod === methodFilter;
+
+    const matchStatus =
+      statusFilter === 'all' || tx.status === statusFilter;
+
+    return matchSearch && matchMethod && matchStatus;
+  });
+}, [transactions, searchQuery, methodFilter, statusFilter]);
     const summary = useMemo(() => {
         const totalTransactions = transactions.filter((t) => t.status === 'completed').length;
         const totalGrossSales = transactions
