@@ -29,7 +29,7 @@ const fromTransactionRow = (t) => ({
   cashierName: t.cashier_name || '',
   items: t.items || [],
 });
-const (error) = await supabase.from('transactions').upsert({
+const { error } = await supabase.from('transactions').upsert({
   id: transaction.id,
   store_id: storeId,
   invoice_number: transaction.invoiceNumber || null,
@@ -48,7 +48,8 @@ const (error) = await supabase.from('transactions').upsert({
   cashier_name: transaction.cashierName || '',
   items: transaction.items || [],
 }, { onecnflict: 'id' });
-
+if (error) thow error;
+}
 export async function ensureStore(storeName = 'TOKO BERKAH JAYA') {
   if (!supabase) return null;
   const { data, error } = await supabase.rpc('ensure_my_store', { store_name: storeName });
