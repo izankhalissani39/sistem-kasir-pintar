@@ -4,7 +4,7 @@ import { TrendingUp, DollarSign, ShoppingBag, CreditCard, Download, PieChart, Ba
 import { formatRupiah, formatNumber } from './formatters.js';
 export const SalesReport = ({ transactions, products }) => {
     const [timeFilter, setTimeFilter] = useState('all');
-    const [stratDate, setStartDate] = useState('');
+    const [startDate, setStartDate] = useState('');
     // Filter transactions by selected timeframe
     const filteredTransactions = useMemo(() => {
         const now = new Date();
