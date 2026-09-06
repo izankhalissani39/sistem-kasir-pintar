@@ -13,23 +13,25 @@ const fromProductRow = (p) => ({
   minStockAlert: Number(p.min_stock_alert || 0), unit: p.unit || 'pcs', image: p.image || undefined, colorTag: p.color_tag || undefined,
 });
 
-const fromTransactionRow = (t) => ({
-  id: t.id,
-  invoiceNumber: t.invoice_number || t.id,
-  date: t.transaction_date,
-  customername: t.customer_name || 'Pelanggan Umum',
-  paymentmethod: t.payment_method || 'chas',
-  subtital: Number(t.subtotal || 0),
-  discountAmount: Number(t.discount_Amount || 0),
-  taxAmount: Number(t.tax_amount || 0),
-  totalAmount: Number(t.total_amount || 0),
-  paidAmount: Number(t.paid_amount || 0),
-  changeAmount: Number(t.change_amount || 0),
-  status: t.status || 'completed',
-  refoundReason: t.refound_reason || null,
-  cashiername: t.cashier_name || '',
-  items: t.items || [],
-});
+const (error) = await supabase.from('transactions').upsert({
+  id: transaction.id,
+  store_id: storeId,
+  invoice_number: transaction.invoiceNumber || null,
+  transaction_date: transaction.date || new Date().toISOString(),
+  customer_name: transaction.customerName || 'Pelanggan Umum',
+  payment_method: transaction.paymentMethod || 'chas',
+  subtital: Number(transaction.subtotal || 0),
+  discount_amount: Number(transaction.discountAmount || 0),
+  tax_amount: Number(transaction.taxAmount || 0),
+  total_amount: Number(transaction.totalAmount || 0),
+  paid_amount: Number(transaction.paidAmount || 0),
+  change_amount: Number(
+    transaction.changeAmount ?? transaction.change ?? 0),
+  status: transaction.status || 'completed',
+  refound_reason: transaction.refoundReason || null,
+  cashier_name: transaction.cashierName || '',
+  items: transaction.items || [],
+}), {onecnflict: 'id'});
 
 export async function ensureStore(storeName = 'TOKO BERKAH JAYA') {
   if (!supabase) return null;
