@@ -47,7 +47,7 @@ const (error) = await supabase.from('transactions').upsert({
   refound_reason: transaction.refoundReason || null,
   cashier_name: transaction.cashierName || '',
   items: transaction.items || [],
-}), {onecnflict: 'id'});
+}, { onecnflict: 'id' });
 
 export async function ensureStore(storeName = 'TOKO BERKAH JAYA') {
   if (!supabase) return null;
