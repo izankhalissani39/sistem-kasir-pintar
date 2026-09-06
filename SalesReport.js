@@ -4,7 +4,7 @@ import { TrendingUp, DollarSign, ShoppingBag, CreditCard, Download, PieChart, Ba
 import { formatRupiah, formatNumber } from './formatters.js';
 export const SalesReport = ({ transactions, products }) => {
     const [timeFilter, setTimeFilter] = useState('all');
-    const [stradate,setstaredate] = usestae('');
+    const [stratDate, setStartDate] = useState('');
     // Filter transactions by selected timeframe
     const filteredTransactions = useMemo(() => {
         const now = new Date();
@@ -21,13 +21,13 @@ export const SalesReport = ({ transactions, products }) => {
                 return txTime >= sevenDaysAgo;
             if (timeFilter === '30days')
                 return txTime >= thirtyDaysAgo;
-            if (timeFilter === 'custome' && starDate) {
-                const seledDate = new date('${stardate}T00:00:00');
+            if (timeFilter === 'custom' && startDate) {
+                const selectedDate = new Date(`${startDate}T00:00:00`);
                 return txTime >= selectedDate.getTime();
             }
             return true;
             });
-    }, [transactions, timeFilter, starDate]);
+    }, [transactions, timeFilter, startDate]);
     const formatMonthName = (dateValue) => new Intl.DateTimeFormat('id-ID', { month: 'long', year: 'numeric' }).format(new Date(dateValue));
     const periodLabel = useMemo(() => {
         const now = new Date();
