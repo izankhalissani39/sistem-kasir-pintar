@@ -12,7 +12,23 @@ const fromProductRow = (p) => ({
   costPrice: Number(p.cost_price || 0), sellingPrice: Number(p.selling_price || 0), stock: Number(p.stock || 0),
   minStockAlert: Number(p.min_stock_alert || 0), unit: p.unit || 'pcs', image: p.image || undefined, colorTag: p.color_tag || undefined,
 });
-
+const fromTransactionRow = (t) => ({
+  id: t.id,
+  invoiceNumber: t.invoice_number || '',
+  date: t.transaction_date,
+  customerName: t.customer_name || 'Pelanggan Umum',
+  paymentMethod: t.payment_method || 'cash',
+  subtotal: Number(t.subtotal || 0),
+  discountAmount: Number(t.discount_amount || 0),
+  taxAmount: Number(t.tax_amount || 0),
+  totalAmount: Number(t.total_amount || 0),
+  paidAmount: Number(t.paid_amount || 0),
+  changeAmount: Number(t.change_amount || 0),
+  status: t.status || 'completed',
+  refundReason: t.refund_reason || null,
+  cashierName: t.cashier_name || '',
+  items: t.items || [],
+});
 const (error) = await supabase.from('transactions').upsert({
   id: transaction.id,
   store_id: storeId,
@@ -76,7 +92,7 @@ export async function seedDatabase(storeId, { products, categories, settings, tr
   }
   if (transactions?.length) {
     const rows = transactions.map((t) => ({
-      id: t.id, store_id: storeId, transaction_date: t.date || new Date().toISOString(), customer_name: t.customerName,
+      id: t.id, store_id: storeId, invoice_number: t.invoiceNumber || null, transaction_date: t.date || new Date().toISOString(), customer_name: t.customerName,
       payment_method: t.paymentMethod || 'cash', subtotal: t.subtotal || 0, discount_amount: t.discountAmount || 0,
       tax_amount: t.taxAmount || 0, total_amount: t.totalAmount || 0, paid_amount: t.paidAmount || 0, change_amount: t.changeAmount || 0,
       status: t.status || 'completed', refund_reason: t.refundReason || null, cashier_name: t.cashierName || '', items: t.items || [],
@@ -138,17 +154,6 @@ export async function commitSale(storeId, transaction) {
   if (error) throw error;
   return fromTransactionRow(data);
 }
-export async function upsertTransaction(storeId, transaction) {
-  const { error } = await supabase.from('transactions').upsert({
-    id: transaction.id, store_id: storeId, transaction_date: transaction.date || new Date().toISOString(), customer_name: transaction.customerName,
-    payment_method: transaction.paymentMethod || 'cash', subtotal: transaction.subtotal || 0, discount_amount: transaction.discountAmount || 0,
-    tax_amount: transaction.taxAmount || 0, total_amount: transaction.totalAmount || 0, paid_amount: transaction.paidAmount ?? transaction.amountPaid ?? 0,
-    change_amount: transaction.changeAmount ?? transaction.change ?? 0, status: transaction.status || 'completed', refund_reason: transaction.refundReason || null,
-    cashier_name: transaction.cashierName || '', items: transaction.items || [],
-  }, { onConflict: 'id' });
-  if (error) throw error;
-}
-
 export async function refundSale(storeId, transactionId, reason) {
   const { data, error } = await supabase.rpc('refund_sale', { p_store_id: storeId, p_transaction_id: transactionId, p_reason: reason || '' });
   if (error) throw error;
