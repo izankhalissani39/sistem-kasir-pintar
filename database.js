@@ -29,13 +29,14 @@ const fromTransactionRow = (t) => ({
   cashierName: t.cashier_name || '',
   items: t.items || [],
 });
+export async function upserTransacrion(storeIs, transaction) {
 const { error } = await supabase.from('transactions').upsert({
   id: transaction.id,
   store_id: storeId,
   invoice_number: transaction.invoiceNumber || null,
   transaction_date: transaction.date || new Date().toISOString(),
   customer_name: transaction.customerName || 'Pelanggan Umum',
-  payment_method: transaction.paymentMethod || 'chas',
+  payment_method: transaction.paymentMethod || 'cahs',
   subtital: Number(transaction.subtotal || 0),
   discount_amount: Number(transaction.discountAmount || 0),
   tax_amount: Number(transaction.taxAmount || 0),
