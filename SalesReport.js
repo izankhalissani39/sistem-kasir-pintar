@@ -286,7 +286,7 @@ const handleExportCSV = () => {
 };
     return (_jsxs("div", { className: "max-w-7xl mx-auto p-4 sm:p-6 space-y-6", children: [_jsxs("div", { className: "bg-white p-4 rounded-2xl border border-slate-200 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-3", children: [_jsxs("div", { className: "flex items-center space-x-2", children: [_jsx(BarChart3, { className: "w-5 h-5 text-emerald-600" }), _jsxs("div", { children: [_jsx("h2", { className: "font-bold text-base text-slate-800", children: "Laporan & Analitik Penjualan" }), _jsxs("p", { className: "text-[11px] text-slate-500 mt-0.5", children: ["Periode: ", _jsx("span", { className: "font-semibold text-emerald-700", children: periodLabel })] })] })] }), _jsxs("div", { className: "flex items-center space-x-2 w-full sm:w-auto", children: [_jsx("div", { className: "flex bg-slate-100 p-1 rounded-xl border border-slate-200 w-full sm:w-auto", children: [
         _jsx("div", {
-            className: "mb-4",
+            className: "mb-4 w-full",
             children: [
                 _jsx("div", {
                     className: "text-sm front-medium text-slate-700 mb-2",
