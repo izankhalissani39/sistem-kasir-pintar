@@ -29,27 +29,34 @@ const fromTransactionRow = (t) => ({
   cashierName: t.cashier_name || '',
   items: t.items || [],
 });
-export async function upserTransacrion(storeIs, transaction) {
-const { error } = await supabase.from('transactions').upsert({
-  id: transaction.id,
-  store_id: storeId,
-  invoice_number: transaction.invoiceNumber || null,
-  transaction_date: transaction.date || new Date().toISOString(),
-  customer_name: transaction.customerName || 'Pelanggan Umum',
-  payment_method: transaction.paymentMethod || 'cahs',
-  subtital: Number(transaction.subtotal || 0),
-  discount_amount: Number(transaction.discountAmount || 0),
-  tax_amount: Number(transaction.taxAmount || 0),
-  total_amount: Number(transaction.totalAmount || 0),
-  paid_amount: Number(transaction.paidAmount || 0),
-  change_amount: Number(
-    transaction.changeAmount ?? transaction.change ?? 0),
-  status: transaction.status || 'completed',
-  refound_reason: transaction.refoundReason || null,
-  cashier_name: transaction.cashierName || '',
-  items: transaction.items || [],
-}, { onConflict: 'id' });
-if (error) thow error;}
+export async function upsertTransaction(storeId, transaction) {
+  const row = {
+    id: transaction.id,
+    store_id: storeId,
+    invoice_number: transaction.invoiceNumber || null,
+    transaction_date: transaction.date || new Date().toISOString(),
+    customer_name: transaction.customerName || 'Pelanggan Umum',
+    payment_method: transaction.paymentMethod || 'cash',
+    subtotal: Number(transaction.subtotal || 0),
+    discount_amount: Number(transaction.discountAmount || 0),
+    tax_amount: Number(transaction.taxAmount || 0),
+    total_amount: Number(transaction.totalAmount || 0),
+    paid_amount: Number(transaction.paidAmount || 0),
+    change_amount: Number(
+      transaction.changeAmount ?? transaction.change ?? 0
+    ),
+    status: transaction.status || 'completed',
+    refund_reason: transaction.refundReason || null,
+    cashier_name: transaction.cashierName || '',
+    items: transaction.items || [],
+  };
+
+  const { error } = await supabase
+    .from('transactions')
+    .upsert(row, { onConflict: 'id' });
+
+  if (error) throw error;
+}
 export async function ensureStore(storeName = 'TOKO MELIORA') {
   if (!supabase) return null;
   const { data, error } = await supabase.rpc('ensure_my_store', { store_name: storeName });
