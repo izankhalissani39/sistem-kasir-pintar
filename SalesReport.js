@@ -289,7 +289,7 @@ const handleExportCSV = () => {
             className: "mb-4",
             children: [
                 _jsx("div", {
-                    className: "text-sm from-medium text-slate-700 mb-2",
+                    className: "text-sm front-medium text-slate-700 mb-2",
                     children: "Mulai Tanggal"
                 }),
                 _jsx("input", {
@@ -299,7 +299,7 @@ const handleExportCSV = () => {
                         setStartDate(e.target.value);
                         setTimeFilter('custom');
                     },
-                    className: "w-full rounded-x1 border border-slate-300 px-4 py-3 from-medium text-slate-700"
+                    className: "w-full rounded-xl border border-slate-300 px-4 py-3 from-medium text-slate-700 bg-white"
 
                 })
             ]
