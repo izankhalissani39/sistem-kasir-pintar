@@ -49,9 +49,7 @@ const { error } = await supabase.from('transactions').upsert({
   cashier_name: transaction.cashierName || '',
   items: transaction.items || [],
 }, { onConflict: 'id' });
-if (error) thow error;
-}
-
+if (error) thow error;}
 export async function ensureStore(storeName = 'TOKO MELIORA') {
   if (!supabase) return null;
   const { data, error } = await supabase.rpc('ensure_my_store', { store_name: storeName });
