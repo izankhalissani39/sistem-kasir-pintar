@@ -275,7 +275,7 @@ export default function App() {
                 e.preventDefault();
                 setActiveTab('transactions');
             }
-            //F10 -> Salesreport Tab
+            //F10 -> SalesReport Tab
             if (e.key ==='F10') {
                 e.preventDefault();
                 setActiveTab('salesreport');
