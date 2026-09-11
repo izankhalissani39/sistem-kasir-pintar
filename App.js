@@ -276,9 +276,9 @@ export default function App() {
                 setActiveTab('transactions');
             }
             //F10 -> Salesreport Tab
-            if (e.key ===`F10`) {
+            if (e.key ==='F10') {
                 e.preventDefault();
-                setActiveTab(`salesreport`);
+                setActiveTab('salesreport');
             }
         };
         window.addEventListener('keydown', handleKeyDown);
