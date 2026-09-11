@@ -23,8 +23,15 @@ export const SalesReport = ({ transactions, products }) => {
                 return txTime >= thirtyDaysAgo;
             if (timeFilter === 'custom' && startDate) {
                 const selectedDate = new Date(`${startDate}T00:00:00`);
-                return txTime >= selectedDate.getTime();
+                const nextDate = new Date(`${startDate}T00:00:00`);
+                nextDate.setDate(nextDate.getDate() + 1);
+
+                return (
+                    txTime >= selectedDate.getTime() &&
+                    txTime < nextDate.getTime()
+                );
             }
+            
             return true;
             });
     }, [transactions, timeFilter, startDate]);
@@ -41,7 +48,7 @@ export const SalesReport = ({ transactions, products }) => {
             return `${new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long' }).format(start)} – ${new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }).format(now)}`;
         }
         return 'Semua periode';
-    }, [timeFilter]);
+    }, [timeFilter, startdate]);
     // High-level Financial Summary
     const metrics = useMemo(() => {
         const totalSales = filteredTransactions.reduce((sum, t) => sum + t.totalAmount, 0);
