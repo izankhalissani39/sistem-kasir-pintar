@@ -48,7 +48,7 @@ export const SalesReport = ({ transactions, products }) => {
             return `${new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long' }).format(start)} – ${new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }).format(now)}`;
         }
         return 'Semua periode';
-    }, [timeFilter, startdate]);
+    }, [timeFilter, startDate]);
     // High-level Financial Summary
     const metrics = useMemo(() => {
         const totalSales = filteredTransactions.reduce((sum, t) => sum + t.totalAmount, 0);
@@ -292,25 +292,27 @@ const handleExportCSV = () => {
     document.body.removeChild(link);
 };
     return (_jsxs("div", { className: "max-w-7xl mx-auto p-4 sm:p-6 space-y-6", children: [_jsxs("div", { className: "bg-white p-4 rounded-2xl border border-slate-200 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-3", children: [_jsxs("div", { className: "flex items-center space-x-2", children: [_jsx(BarChart3, { className: "w-5 h-5 text-emerald-600" }), _jsxs("div", { children: [_jsx("h2", { className: "font-bold text-base text-slate-800", children: "Laporan & Analitik Penjualan" }), _jsxs("p", { className: "text-[11px] text-slate-500 mt-0.5", children: ["Periode: ", _jsx("span", { className: "font-semibold text-emerald-700", children: periodLabel })] })] })] }), _jsxs("div", { className: "flex items-center space-x-2 w-full sm:w-auto", children: [_jsx("div", { className: "flex bg-slate-100 p-1 rounded-xl border border-slate-200 w-full sm:w-auto", children: [
-        _jsx("div", {
-            className: "mb-4 w-full",
+            _jsxs("div", {
+            className: "flex items-center gap-2 bg-white p-2 rounded-xl border border-slate-300",
             children: [
-                _jsx("div", {
-                    className: "text-sm front-medium text-slate-700 mb-2",
-                    children: "Mulai Tanggal"
-                }),
-                _jsx("input", {
-                    type: "date",
-                    value: startDate,
-                    onChange: (e) => {
-                        setStartDate(e.target.value);
-                        setTimeFilter('custom');
-                    },
-                    className: "w-full rounded-xl border border-slate-300 px-4 py-3 from-medium text-slate-700 bg-white"
-
-                })
-            ]
-        }),     
+            _jsx("label", {
+                htmlFor: "sales-report-start-date",
+                className: "text-xs font-semibold text-slate-600 whitespace-nowrap",
+                children: "Tanggal"
+            }),
+            _jsx("input", {
+                id: "sales-report-start-date",
+                type: "date",
+                value: startDate,
+                onChange: (e) => {
+                    setStartDate(e.target.value);
+                    setTimeFilter("custom");
+                },
+                className: "rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 outline-none focus:ring-2 focus:ring-emerald-500",
+                title: "Pilih tanggal laporan"
+             })
+         ]
+     }),
                                     { id: 'today', label: 'Hari Ini' },
                                     { id: '7days', label: '7 Hari' },
                                     { id: '30days', label: '30 Hari' },
