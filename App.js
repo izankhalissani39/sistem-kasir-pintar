@@ -274,6 +274,10 @@ export default function App() {
             if (e.key === 'F4') {
                 e.preventDefault();
                 setActiveTab('transactions');
+            //F5 -> Salesreport Tab
+            if (e.key ===`F5`) {
+                e.preventDefault();
+                setActiveTab(`salesreport`);
             }
         };
         window.addEventListener('keydown', handleKeyDown);
