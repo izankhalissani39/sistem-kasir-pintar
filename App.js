@@ -251,11 +251,11 @@ export default function App() {
     // Global Keyboard Shortcuts
     useEffect(() => {
         const handleKeyDown = (e) => {
-            // F9 -> Checkout in POS mode
+            // F6 -> Checkout in POS mode
             if (e.key === 'F9') {
                 e.preventDefault();
                 if (activeTab === 'pos' && cart.length > 0 && !isPaymentOpen) {
-                    // Reuse the POS checkout button so F9 always uses the exact same
+                    // Reuse the POS checkout button so F6 always uses the exact same
                     // customer, item-discount, global-discount, and tax calculations.
                     document.getElementById('pos-pay-button')?.click();
                 }
@@ -275,8 +275,8 @@ export default function App() {
                 e.preventDefault();
                 setActiveTab('transactions');
             }
-            //F10 -> Reports Tab
-            if (e.key ==='F10') {
+            //F5 -> Reports Tab
+            if (e.key ==='F5') {
                 e.preventDefault();
                 setActiveTab('reports');
             }
