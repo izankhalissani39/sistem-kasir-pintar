@@ -307,7 +307,7 @@ const handleExportCSV = () => {
                     value: startDate,
                     onChange: (e) => {
                         setStartDate(e.target.value);
-                        setTimeFilter("custom");
+                        setTimeFilter("end");
                     },
                     className: "rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 outline-none focus:ring-2 focus:ring-emerald-500",
                     title: "Pilih tanggal laporan"
