@@ -172,7 +172,7 @@ export const SalesReport = ({ transactions, products }) => {
                                     { id: 'today', label: 'Hari Ini' },
                                     { id: '7days', label: '7 Hari' },
                                     { id: '30days', label: '30 Hari' },
-                                    { iD: 'custom', label: 'Pilih Tanggal'},
+                                    { id: 'custom', label: 'Pilih Tanggal'},
                                     { id: 'all', label: 'Semua' },
                                 ].map((tab) => (_jsx("button", { onClick: () => setTimeFilter(tab.id), className: `flex-1 sm:flex-none px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${timeFilter === tab.id
                                         ? 'bg-emerald-600 text-white shadow-xs'
