@@ -176,7 +176,8 @@ export const SalesReport = ({ transactions, products }) => {
                                     { id: 'all', label: 'Semua' },
                                 ].map((tab) => (_jsx("button", { onClick: () => setTimeFilter(tab.id), className: `flex-1 sm:flex-none px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${timeFilter === tab.id
                                         ? 'bg-emerald-600 text-white shadow-xs'
-                                        : 'text-slate-600 hover:text-slate-900'}`, children: tab.label }, tab.id))) }),timeFilter === 'custom' && (_jsx("input", {
+                                        : 'text-slate-600 hover:text-slate-900'}`, children: tab.label }, tab.id))) }),
+    timeFilter === 'custom' && (_jsx("input", {
     type: "date",
     value: customDate,
     onChange: (e) => {
