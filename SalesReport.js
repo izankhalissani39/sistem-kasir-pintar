@@ -4,6 +4,7 @@ import { TrendingUp, DollarSign, ShoppingBag, CreditCard, Download, PieChart, Ba
 import { formatRupiah, formatNumber } from './formatters.js';
 export const SalesReport = ({ transactions, products }) => {
     const [timeFilter, setTimeFilter] = useState('today');
+    const [customDate, setCustomDate] = useState('');
     // Filter transactions by selected timeframe
     const filteredTransactions = useMemo(() => {
         const now = new Date();
@@ -20,9 +21,17 @@ export const SalesReport = ({ transactions, products }) => {
                 return txTime >= sevenDaysAgo;
             if (timeFilter === '30days')
                 return txTime >= thirtyDaysAgo;
+            if (timeFilter === 'custom' && customDate) {
+    const selectedDate = new Date(`${customDate}T00:00:00`);
+    const nextDate = new Date(selectedDate);
+    nextDate.setDate(nextDate.getDate() + 1);
+
+    return txTime >= selectedDate.getTime() &&
+           txTime < nextDate.getTime();
+}
             return true;
         });
-    }, [transactions, timeFilter]);
+    }, [transactions, timeFilter, customDate]);
     const formatMonthName = (dateValue) => new Intl.DateTimeFormat('id-ID', { month: 'long', year: 'numeric' }).format(new Date(dateValue));
     const periodLabel = useMemo(() => {
         const now = new Date();
@@ -35,8 +44,15 @@ export const SalesReport = ({ transactions, products }) => {
             const start = new Date(Date.now() - 30 * 24 * 3600 * 1000);
             return `${new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long' }).format(start)} – ${new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }).format(now)}`;
         }
+        if (timeFilter === 'custom' && customDate) {
+    return new Intl.DateTimeFormat('id-ID', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+    }).format(new Date(`${customDate}T00:00:00`));
+}
         return 'Semua periode';
-    }, [timeFilter]);
+    }, [timeFilter, customDate]);
     // High-level Financial Summary
     const metrics = useMemo(() => {
         const totalSales = filteredTransactions.reduce((sum, t) => sum + t.totalAmount, 0);
@@ -156,6 +172,7 @@ export const SalesReport = ({ transactions, products }) => {
                                     { id: 'today', label: 'Hari Ini' },
                                     { id: '7days', label: '7 Hari' },
                                     { id: '30days', label: '30 Hari' },
+                                    { iD: 'custom', label: 'Pilih Tanggal'},
                                     { id: 'all', label: 'Semua' },
                                 ].map((tab) => (_jsx("button", { onClick: () => setTimeFilter(tab.id), className: `flex-1 sm:flex-none px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${timeFilter === tab.id
                                         ? 'bg-emerald-600 text-white shadow-xs'
