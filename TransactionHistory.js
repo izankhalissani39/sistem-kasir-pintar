@@ -7,39 +7,87 @@ export const TransactionHistory = ({ transactions, onReprintReceipt, onRefundTra
     const [searchQuery, setSearchQuery] = useState('');
     const [methodFilter, setMethodFilter] = useState('all');
     const [statusFilter, setStatusFilter] = useState('all');
+    const [timeFilter, setTimeFilter] = useState('today');
     // Selected transaction for detailed inspect
     const [selectedTransaction, setSelectedTransaction] = useState(null);
     // Refund modal state
     const [refundingTx, setRefundingTx] = useState(null);
     const [refundReason, setRefundReason] = useState('Permintaan Pelanggan / Barang Rusak');
     const filteredTransactions = useMemo(() => {
-        return transactions.filter((tx) => {
-    const search = searchQuery.toLowerCase();
+    const now = new Date();
 
-    const matchSearch =
-      String(tx.invoiceNumber || tx.id || '').toLowerCase().includes(search) ||
-      String(tx.customerName || 'Umum').toLowerCase().includes(search) ||
-      String(tx.cashierName || '').toLowerCase().includes(search);
+    const startOfToday = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate()
+    ).getTime();
 
-    const matchMethod =
-      methodFilter === 'all' || tx.paymentMethod === methodFilter;
+    const endOfToday = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate() + 1
+    ).getTime();
 
-    const matchStatus =
-      statusFilter === 'all' || tx.status === statusFilter;
+    return transactions.filter((tx) => {
+        const txTime = new Date(tx.date).getTime();
 
-    return matchSearch && matchMethod && matchStatus;
-  });
-}, [transactions, searchQuery, methodFilter, statusFilter]);
+        const matchDate =
+            timeFilter === 'today'
+                ? txTime >= startOfToday && txTime < endOfToday
+                : true;
+
+        const search = searchQuery.toLowerCase();
+
+        const matchSearch =
+            tx.invoiceNumber.toLowerCase().includes(search) ||
+            (tx.customerName &&
+                tx.customerName.toLowerCase().includes(search)) ||
+            tx.cashierName.toLowerCase().includes(search);
+
+        const matchMethod =
+            methodFilter === 'all' ||
+            tx.paymentMethod === methodFilter;
+
+        const matchStatus =
+            statusFilter === 'all' ||
+            tx.status === statusFilter;
+
+        return matchDate && matchSearch && matchMethod && matchStatus;
+    });
+}, [
+    transactions,
+    searchQuery,
+    methodFilter,
+    statusFilter,
+    timeFilter
+]);
     const summary = useMemo(() => {
-        const totalTransactions = transactions.filter((t) => t.status === 'completed').length;
-        const totalGrossSales = transactions
-            .filter((t) => t.status === 'completed')
-            .reduce((sum, t) => sum + t.totalAmount, 0);
-        const totalRefunded = transactions
-            .filter((t) => t.status === 'refunded')
-            .reduce((sum, t) => sum + t.totalAmount, 0);
-        return { totalTransactions, totalGrossSales, totalRefunded };
-    }, [transactions]);
+    const completedTransactions = filteredTransactions.filter(
+        (t) => t.status === 'completed'
+    );
+
+    const refundedTransactions = filteredTransactions.filter(
+        (t) => t.status === 'refunded'
+    );
+
+    const totalTransactions = completedTransactions.length;
+
+    const totalGrossSales = completedTransactions.reduce(
+        (sum, t) => sum + t.totalAmount,
+        0
+    );
+
+    const totalRefunded = refundedTransactions.reduce(
+        (sum, t) => sum + t.totalAmount,
+        0
+    );
+
+    return {
+        totalTransactions,
+        totalGrossSales,
+        totalRefunded
+    };
+}, [filteredTransactions]);
     const handleProcessRefund = (e) => {
         e.preventDefault();
         if (!refundingTx)
