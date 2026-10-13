@@ -42,6 +42,7 @@ export async function upsertTransaction(storeId, transaction) {
     discount_amount: Number(transaction.discountAmount || 0),
     tax_amount: Number(transaction.taxAmount || 0),
     total_amount: Number(transaction.totalAmount || 0),
+    total_cost: transaction.totalCost || 0,
     paid_amount: Number(transaction.paidAmount || 0),
     change_amount: Number(
       transaction.changeAmount ?? transaction.change ?? 0
