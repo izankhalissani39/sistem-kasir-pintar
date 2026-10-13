@@ -22,6 +22,7 @@ const fromTransactionRow = (t) => ({
   discountAmount: Number(t.discount_amount || 0),
   taxAmount: Number(t.tax_amount || 0),
   totalAmount: Number(t.total_amount || 0),
+  totalCost: Number(t.total_cost || 0),
   paidAmount: Number(t.paid_amount || 0),
   changeAmount: Number(t.change_amount || 0),
   status: t.status || 'completed',
