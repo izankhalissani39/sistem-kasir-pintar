@@ -252,7 +252,7 @@ export default function App() {
     useEffect(() => {
         const handleKeyDown = (e) => {
             // F6 -> Checkout in POS mode
-            if (e.key === 'F9') {
+            if (e.key === 'F6') {
                 e.preventDefault();
                 if (activeTab === 'pos' && cart.length > 0 && !isPaymentOpen) {
                     // Reuse the POS checkout button so F6 always uses the exact same
