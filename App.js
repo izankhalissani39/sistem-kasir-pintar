@@ -1,4 +1,4 @@
-import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+1import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import React, { useState, useEffect, useRef } from 'react';
 import { INITIAL_PRODUCTS, INITIAL_STORE_SETTINGS, INITIAL_TRANSACTIONS, PRODUCT_CATALOG_VERSION, INITIAL_CATEGORIES } from './initialData.js';
 import { Navbar } from './Navbar.js';
@@ -252,7 +252,7 @@ export default function App() {
     useEffect(() => {
         const handleKeyDown = (e) => {
             // F6 -> Checkout in POS mode
-            if (e.key === 'F6') {
+            if (e.key === 'F9') {
                 e.preventDefault();
                 if (activeTab === 'pos' && cart.length > 0 && !isPaymentOpen) {
                     // Reuse the POS checkout button so F6 always uses the exact same
