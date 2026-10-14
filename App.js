@@ -1,4 +1,4 @@
-1import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import React, { useState, useEffect, useRef } from 'react';
 import { INITIAL_PRODUCTS, INITIAL_STORE_SETTINGS, INITIAL_TRANSACTIONS, PRODUCT_CATALOG_VERSION, INITIAL_CATEGORIES } from './initialData.js';
 import { Navbar } from './Navbar.js';
