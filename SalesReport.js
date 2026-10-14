@@ -99,7 +99,7 @@ const metrics = useMemo(() => {
         avgOrderValue,
         totalItemsSold,
     };
-}, [filteredTransactions, products]);
+}, [filteredTransactions, products])
     }, [filteredTransactions]);
     // Sales by Category
     const categorySales = useMemo(() => {
