@@ -56,13 +56,13 @@ export const SalesReport = ({ transactions, products }) => {
     // High-level Financial Summary
     const metrics = useMemo(() => {
         const totalSales = filteredTransactions.reduce((sum, t) => sum + t.totalAmount, 0);
-        const totalCost = filteredTransactions.reduce((sum, t) => sum + (t.totalCost || ), );
-        const totalTax = filteredTransactions.reduce((sum, t) => sum + (t.taxAmount || ), );
+        const totalCost = filteredTransactions.reduce((sum, t) => sum + (t.items ? t.items.reduce((s, i) => s + ((i.cost || i.hargaModal || 0) * (i.quantity || 0)), 0) : 0), 0);
+        const totalTax = filteredTransactions.reduce((sum, t) => sum + (t.taxAmount || 0), 0);
         const netSalesBeforeTax = totalSales - totalTax;
         const grossProfit = netSalesBeforeTax - totalCost;
         const profitMargin = netSalesBeforeTax > 0 ? Math.round((grossProfit / netSalesBeforeTax) * 100) : 0;
         const totalTransactions = filteredTransactions.length;
-        const avgOrderValue = totalTransactions > 0 ? Math.round(totalSales / totalTransactions) : 0;
+        const avgOrderValue = totalTransactions > 0 ? Math.round(netSalesBeforeTax / totalTransactions) : 0;
         const totalItemsSold = filteredTransactions.reduce((sum, t) => sum + t.items.reduce((s, i) => s + i.quantity, 0), 0);
         return {
             totalSales,
