@@ -54,52 +54,25 @@ export const SalesReport = ({ transactions, products }) => {
         return 'Semua periode';
     }, [timeFilter, customDate]);
     // High-level Financial Summary
-const metrics = useMemo(() => {
-    const totalSales = filteredTransactions.reduce((sum, t) => sum + (Number(t.totalAmount) || 0), 0);
-    const totalTax = filteredTransactions.reduce((sum, t) => sum + (Number(t.taxAmount) || 0), 0);
-    const totalCost = filteredTransactions.reduce((sum, t) => {
-        if (t.totalCost && Number(t.totalCost) > 0) {
-            return sum + Number(t.totalCost);
-        }
-
-        if (t.items && t.items.length > 0) {
-            const itemCostSum = t.items.reduce((itemSum, item) => {
-                const prod = products.find((p) => p.id === item.productId);
-                const unitCost = Number(prod?.cost) || Number(prod?.purchasePrice) || Number(item.cost) || 0;
-                const qty = Number(item.quantity) || 0;
-                
-                return itemSum + (unitCost * qty);
-            }, 0);
-            
-            return sum + itemCostSum;
-        }
-        
-        return sum;
-    }, 0);
-    
-    const netSalesBeforeTax = totalSales - totalTax;
-    const grossProfit = netSalesBeforeTax - totalCost;
-    let profitMargin = 0;
-    if (netSalesBeforeTax > 0 && totalCost > 0) {
-        profitMargin = Math.round((grossProfit / netSalesBeforeTax) * 100);
-    } else if (netSalesBeforeTax > 0 && totalCost === 0) {
-        profitMargin = 0; 
-    }
-
-    const totalTransactions = filteredTransactions.length;
-    const avgOrderValue = totalTransactions > 0 ? Math.round(totalSales / totalTransactions) : 0;
-    const totalItemsSold = filteredTransactions.reduce((sum, t) => sum + (t.items?.reduce((s, i) => s + (Number(i.quantity) || 0), 0) || 0), 0);
-
-    return {
-        totalSales,
-        totalCost,
-        grossProfit,
-        profitMargin,
-        totalTransactions,
-        avgOrderValue,
-        totalItemsSold,
-    };
-
+    const metrics = useMemo(() => {
+        const totalSales = filteredTransactions.reduce((sum, t) => sum + t.totalAmount, 0);
+        const totalCost = filteredTransactions.reduce((sum, t) => sum + (t.totalCost || 0), 0);
+        const totalTax = filteredTransactions.reduce((sum, t) => sum + (t.taxAmount || 0), 0);
+        const netSalesBeforeTax = totalSales - totalTax;
+        const grossProfit = netSalesBeforeTax - totalCost;
+        const profitMargin = netSalesBeforeTax > 0 ? Math.round((grossProfit / netSalesBeforeTax) * 100) : 0;
+        const totalTransactions = filteredTransactions.length;
+        const avgOrderValue = totalTransactions > 0 ? Math.round(totalSales / totalTransactions) : 0;
+        const totalItemsSold = filteredTransactions.reduce((sum, t) => sum + t.items.reduce((s, i) => s + i.quantity, 0), 0);
+        return {
+            totalSales,
+            totalCost,
+            grossProfit,
+            profitMargin,
+            totalTransactions,
+            avgOrderValue,
+            totalItemsSold,
+        };
     }, [filteredTransactions]);
     // Sales by Category
     const categorySales = useMemo(() => {
