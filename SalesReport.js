@@ -57,17 +57,31 @@ export const SalesReport = ({ transactions, products }) => {
     const metrics = useMemo(() => {
         const totalSales = filteredTransactions.reduce((sum, t) => sum + t.totalAmount, 0);
         const totalTax = filteredTransactions.reduce((sum, t) => sum + (t.taxAmount || 0), 0);
-        
+
         const totalCost = filteredTransactions.reduce((sum, t) => {
-            const itemCostSum = t.items
-    ? t.items.reduce(
-        (s, i) => s + (
-            Number(i.costPrice ?? i.cost ?? i.hargaModal ?? 0) *
-            Number(i.quantity || 0)
-        ),
-        0
-    )
-    : 0;
+    const itemCostSum = Array.isArray(t.items)
+        ? t.items.reduce(
+            (itemSum, item) =>
+                itemSum +
+                Number(
+                    item.costPrice ??
+                    item.cost ??
+                    item.hargaModal ??
+                    0
+                ) *
+                Number(item.quantity ?? 0),
+            0
+        )
+        : 0;
+
+    const savedCost = Number(t.totalCost ?? 0);
+
+    return sum + (
+        savedCost > 0
+            ? savedCost
+            : itemCostSum
+    );
+}, 0);
         const netSalesBeforeTax = totalSales - totalTax;
         const grossProfit = netSalesBeforeTax - totalCost;
         const profitMargin = netSalesBeforeTax > 0 ? Math.round((grossProfit / netSalesBeforeTax) * 100) : 0;
