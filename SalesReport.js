@@ -59,10 +59,15 @@ export const SalesReport = ({ transactions, products }) => {
         const totalTax = filteredTransactions.reduce((sum, t) => sum + (t.taxAmount || 0), 0);
         
         const totalCost = filteredTransactions.reduce((sum, t) => {
-            const itemCostSum = t.items ? t.items.reduce((s, i) => s + ((i.cost || i.hargaModal || 0) * i.quantity), 0) : 0;
-            return sum + (t.totalCost || itemCostSum);
-        }, 0);
-
+            const itemCostSum = t.items
+    ? t.items.reduce(
+        (s, i) => s + (
+            Number(i.costPrice ?? i.cost ?? i.hargaModal ?? 0) *
+            Number(i.quantity || 0)
+        ),
+        0
+    )
+    : 0;
         const netSalesBeforeTax = totalSales - totalTax;
         const grossProfit = netSalesBeforeTax - totalCost;
         const profitMargin = netSalesBeforeTax > 0 ? Math.round((grossProfit / netSalesBeforeTax) * 100) : 0;
