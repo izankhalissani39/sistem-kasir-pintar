@@ -169,3 +169,38 @@ export async function refundSale(storeId, transactionId, reason) {
   if (error) throw error;
   return fromTransactionRow(data);
 }
+export async function registerMyDevice() {
+if (!supabase) {
+throw new Error('Supabase belum terhubung.');
+}
+
+const userAgent = navigator.userAgent || '';
+let deviceType = 'desktop';
+
+if (/tablet|ipad/i.test(userAgent)) {
+deviceType = 'tablet';
+} else if (/mobile|android|iphone/i.test(userAgent)) {
+deviceType = 'mobile';
+}
+
+const deviceName =
+deviceType === 'mobile'
+? 'HP / Ponsel'
+: deviceType === 'tablet'
+? 'Tablet'
+: 'Komputer';
+
+const { data, error } = await supabase.rpc(
+'register_my_device',
+{
+p_device_name: deviceName,
+p_device_type: deviceType,
+}
+);
+
+if (error) {
+throw error;
+}
+
+return data;
+}
