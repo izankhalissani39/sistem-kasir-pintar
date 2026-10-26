@@ -50,6 +50,44 @@ export default function App() {
         });
         return () => { mounted = false; listener.subscription.unsubscribe(); };
     }, [forceLocalMode]);
+    // Register this device after Supabase login.
+useEffect(() => {
+    if (!SUPABASE_CONFIGURED || forceLocalMode || !authSession?.user) {
+        return;
+    }
+
+    let cancelled = false;
+
+    const registerDevice = async () => {
+        try {
+            const result = await registerMyDevice();
+
+            if (cancelled) return;
+
+            if (result?.is_revoked) {
+                await supabase.auth.signOut({ scope: 'local' });
+                showToast(
+                    'Akses perangkat ini telah dicabut. Silakan login kembali jika diperlukan.',
+                    'error'
+                );
+            }
+        } catch (error) {
+            console.error('Device registration failed:', error);
+            if (!cancelled) {
+                showToast(
+                    'Pendaftaran perangkat gagal: ' + (error.message || 'Kesalahan tidak diketahui'),
+                    'error'
+                );
+            }
+        }
+    };
+
+    registerDevice();
+
+    return () => {
+        cancelled = true;
+    };
+}, [authSession?.user?.id, authSession?.access_token, forceLocalMode]);
 
     // --- Persistent States from LocalStorage ---
     const [products, setProducts] = useState(() => {
