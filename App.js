@@ -16,7 +16,7 @@ import { BottomMobileNav } from './BottomMobileNav.js';
 import { ToastContainer } from './Toast.js';
 import { AuthGate } from './AuthGate.js';
 import { supabase, SUPABASE_CONFIGURED } from './supabaseClient.js';
-import { ensureStore, loadDatabase, seedDatabase, upsertProduct, deleteProduct, syncCategories, saveSettings, saveShift, syncHeldOrders, commitSale, upsertTransaction, refundSale } from './database.js';
+import { ensureStore, loadDatabase, seedDatabase, upsertProduct, deleteProduct, syncCategories, saveSettings, saveShift, syncHeldOrders, commitSale, upsertTransaction, refundSale, registerMydevice} from './database.js';
 export default function App() {
     const [authSession, setAuthSession] = useState(null);
     const [dbStoreId, setDbStoreId] = useState(null);
